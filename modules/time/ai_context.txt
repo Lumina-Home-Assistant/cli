@@ -1,0 +1,10 @@
+
+# This module (called "time") contains everything time related, here is a list of all functions and their purpose:
+
+## function current_time:
+- Params: None
+- Returns: The current time as (hh:mm AM/PM)
+
+## function current_date:
+- Params: None
+- Returns: The current date as (Y:m:d)
