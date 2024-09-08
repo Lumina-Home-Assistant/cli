@@ -1,6 +1,6 @@
 import requests
 import subprocess
-
+from pydoc import locate
 
 class Installations:
     def __init__(self):
@@ -20,5 +20,18 @@ class Installations:
         try:
             subprocess.run(['git', 'clone', repo_url, f"{clone_to_path}/{module_name}"], check=True)
             print(f"Repository cloned to {clone_to_path}")
+            self.check_repo(repo_url)
         except subprocess.CalledProcessError as e:
             raise subprocess.CalledProcessError(f"Failed to clone repository: {e}")
+
+    def check_installation(self, module_name) -> bool:
+        import_class = locate(f'{module_name}.app.{module_name}')
+        if not import_class:
+            raise ModuleNotFoundError(f"Module {module_name} not found")
+
+        try:
+            with open(f"./modules/{module_name}/ai_context.txt"):
+                pass
+        except FileNotFoundError:
+            print('Module: ', module_name, ' did NOT contain an `ai_context.txt` file')
+            # doesn't throw error but prints warning

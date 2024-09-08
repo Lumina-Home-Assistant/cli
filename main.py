@@ -4,8 +4,6 @@ from helpers.installations import Installations
 context = Context()
 mod_install = Installations()
 
-print(context.pull_all_available_contexts)
-
 def main(cmd: str, dev: bool = False):
     """
     :param cmd: Command to be executed
